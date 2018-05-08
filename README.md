@@ -65,44 +65,44 @@ Or you can use a map[string] interface{} to load json files:
 
 ## Documentation
 
-###LoadByteFiles
+### LoadByteFiles(dirname string, ext string) ([]byte, error)
  - Read files from folder and return bytes, filtered by extension
 
-###LoadListFiles
+### LoadListFiles(path string, ext string, removeExtension bool) ([]string, error)
  - Loads a directory recursivily and returns a list
  path : directory path to start create the list
  ext : extension to filter, only files with a especific extension will be included into list , other files will bo ignored
  removeExtension : if true remove extension form the file name
  Example : LoadListFiles("/Users/test", ".html", true)
 
-###LoadJson
+### LoadJson(path string, obj interface{}) error
  - Load a json file and return into a inrterface
  Example : LoadJson("./file.json", &obj)
 
-###SaveJson
+### SaveJson(path string, obj interface{}) error
  - Convert a interface into json and save a file
 
-###LoadYaml
+### LoadYaml(path string, obj interface{}) error
  - Load yaml file into a interface{}
  Example : LoadYaml("./file.yaml", &obj)
 
-###SaveYaml
+### SaveYaml(path string, obj interface{}) error
  - Save yaml interface{} into a file
 
-###Unzip
+### Unzip(archive, target string) error
  - Unizp a file to defined path
  Example: Unzip("/tmp/report-2015.zip", "/tmp/reports/")
 
-###Zipit
+###Zipit(source, target string) error
  - Zip a directory or a file into a zip file
  Example : Zipit("/tmp/documents", "/tmp/backup.zip")
  Example : Zipit("/tmp/report.txt", "/tmp/report-2015.zip")
 
-###GetCWD
+### GetCWD() string
  - Return working dir
 
-###RenameIfExists
+### RenameIfExists(path string)
  - Rename a file if exists
 
-###GetTimeStamp
+### GetTimeStamp() string
  - Return timeStamp string with current date
