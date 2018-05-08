@@ -89,15 +89,6 @@ Or you can use a map[string] interface{} to load json files:
 ### SaveYaml(path string, obj interface{}) error
  - Save yaml interface{} into a file
 
-### Unzip(archive, target string) error
- - Unizp a file to defined path
- Example: Unzip("/tmp/report-2015.zip", "/tmp/reports/")
-
-###Zipit(source, target string) error
- - Zip a directory or a file into a zip file
- Example : Zipit("/tmp/documents", "/tmp/backup.zip")
- Example : Zipit("/tmp/report.txt", "/tmp/report-2015.zip")
-
 ### GetCWD() string
  - Return working dir
 
@@ -106,3 +97,19 @@ Or you can use a map[string] interface{} to load json files:
 
 ### GetTimeStamp() string
  - Return timeStamp string with current date
+
+# Working with compressed files
+
+## Compress
+### fileutils/compressor/zip
+
+### fileutils/compressor/targz
+
+### fileutils/compressor/tar compressor
+
+## Extract
+### fileutils/extractor/targz
+
+### fileutils/extractor/tar
+
+### fileutils/extractor/zip
