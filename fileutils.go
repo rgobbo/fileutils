@@ -76,6 +76,49 @@ func LoadListFiles(path string, ext string, removeExtension bool) ([]string, err
 	return list, err
 }
 
+//LoadFilesInfo - loads a directory recursivily and returns a map[string]interface - list of infos
+// path : directory path to start create the list
+// Example : LoadFilesInfo("/Users/test")
+func LoadFilesInfo(path string) ([]map[string]interface{}, error) {
+
+	list := []map[string]interface{}{}
+
+	files, err := ioutil.ReadDir(path)
+	if err != nil {
+		return list, err
+	}
+
+	for _, f := range files {
+		var listItem = make(map[string]interface{})
+		if f.IsDir() {
+			listItem["name"] = f.Name()
+			abs := path + string(filepath.Separator) + f.Name()
+			listItem["absolutePath"], _ = filepath.Abs(abs)
+			listItem["extension"] = ""
+			listItem["path"] = abs
+			listItem["isDir"] = true
+			listDir, err := LoadFilesInfo(path + "/" + f.Name())
+			if err != nil {
+				return list, err
+			}
+			listItem["childs"] = listDir
+
+		} else {
+			fileExt := filepath.Ext(f.Name())
+			listItem["name"] = f.Name()
+			abs := path + string(filepath.Separator) + f.Name()
+			listItem["absolutePath"] = abs
+			listItem["extension"] = fileExt[1:]
+			listItem["path"] = abs
+			listItem["isDir"] = false
+			listItem["childs"] = nil
+		}
+		list = append(list, listItem)
+	}
+
+	return list, err
+}
+
 //LoadBytesDir - read files from folder
 func LoadBytesDir(dirname string) ([]byte, error) {
 	var strCode []byte
@@ -163,7 +206,6 @@ func RemoveDuplicates(elements []string) []string {
 	// Return the new slice.
 	return result
 }
-
 
 //GetCWD - return working dir
 func GetCWD() string {
