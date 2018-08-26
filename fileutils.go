@@ -169,7 +169,7 @@ func LoadYaml(path string, obj interface{}) error {
 	if err != nil {
 		return err
 	}
-	err = yaml.Unmarshal(file, &obj)
+	err = yaml.Unmarshal(file, obj)
 	if err != nil {
 		return err
 	}
