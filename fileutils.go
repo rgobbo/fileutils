@@ -115,7 +115,6 @@ func LoadFilesInfo(path string) ([]map[string]interface{}, error) {
 		}
 		list = append(list, listItem)
 	}
-
 	return list, err
 }
 
