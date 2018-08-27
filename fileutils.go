@@ -111,7 +111,7 @@ func LoadFilesInfo(path string) ([]map[string]interface{}, error) {
 			listItem["extension"] = fileExt[1:]
 			listItem["path"] = abs
 			listItem["isDir"] = false
-			listItem["childs"] = nil
+			listItem["childs"] = []map[string]interface{}{}
 		}
 		list = append(list, listItem)
 	}
